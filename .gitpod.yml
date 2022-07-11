@@ -2,7 +2,7 @@
 tasks:
   - name: Dev Server
     before: curl -fsSL https://bun.sh/install | bash &&  echo 'BUN_INSTALL="/home/gitpod/.bun"' >> ~/.bashrc && echo 'PATH="$BUN_INSTALL/bin:$PATH"' >> ~/.bashrc
-    init: source ~/.bashrc && cd packages/server && bun install
+    init: source ~/.bashrc && cd packages/server && bun install --backend=copyfile
 
 # List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
 ports:

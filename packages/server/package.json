@@ -1,0 +1,24 @@
+{
+  "name": "bunny5-server",
+  "version": "0.0.1",
+  "description": "A development server for UI5 using bun",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ui5",
+    "sapui5",
+    "openui5",
+    "ui5-tooling"
+  ],
+  "author": "Jakob Kjaer",
+  "license": "MIT",
+  "dependencies": {
+    "@openui5/sap.m": "^1.103.1",
+    "@types/node": "^18.0.3",
+    "baojs": "^0.1.2",
+    "bun-types": "^0.1.2",
+    "typescript": "^4.7.4"
+  }
+}

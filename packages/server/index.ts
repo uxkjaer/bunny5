@@ -73,11 +73,12 @@ export default class bunny5_server {
       }
     })
     app.get("/webapp/*app", (ctx) => {
+      console.log("im here)")
       try {
-        const reg = /(?:\/app\/)([\s\S]*)/
-        const path = reg.exec(ctx.path)[1]
-
-          const blob = Bun.file(process.cwd + path);
+        // const reg = /(?:\/webapp\/)([\s\S]*)/
+        // const path = reg.exec(ctx.path)[1]
+        console.log(process.cwd() + ctx.path)
+          const blob = Bun.file(process.cwd() + ctx.path);
           return ctx.sendRaw(new Response(blob))
         }
       

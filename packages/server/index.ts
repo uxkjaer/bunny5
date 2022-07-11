@@ -60,20 +60,21 @@ export default class bunny5_server {
     })
 
     app.get("/resources/*sap", (ctx) => {
-      const libRegex = /(?:\/resources)([\s\S]*)/
-      const urlPath : string | undefined = libRegex.exec(ctx.path)?.toString()
-      if (urlPath){
-        const ui5Path = Bun.pathToFileURL(urlPath)
-        const filePath = path.join(__dirname, urlPath)
-        // const filePath = path.join(os.homedir(), ".ui5", "framework", "packages", `@${this.projectYaml.framework.name}`, `${this.projectYaml.framework.version}`)
-        console.log(ui5Path)
-        console.log(filePath)
-        return ctx.sendRaw(new Response(Bun.file(filePath)))
-
-      }
+      
     })
     app.get("/webapp/*app", (ctx) => {
-      console.log("im here)")
+      if (ctx.path.includes("resources")){
+      const libRegex = /(?:\/resources)([\s\S]*)/
+      const urlPath  = libRegex.exec(ctx.path)
+      if (urlPath){
+        // const ui5Path = Bun.pathToFileURL(urlPath[1])
+        const filePath = path.join(path.resolve("./"), urlPath[0])
+        // const filePath = path.join(os.homedir(), ".ui5", "framework", "packages", `@${this.projectYaml.framework.name}`, `${this.projectYaml.framework.version}`)
+        console.log(urlPath)
+        return ctx.sendRaw(new Response(Bun.file(filePath)))
+
+      }}
+      else {
       try {
         // const reg = /(?:\/webapp\/)([\s\S]*)/
         // const path = reg.exec(ctx.path)[1]
@@ -83,6 +84,7 @@ export default class bunny5_server {
         }
       
       catch (err) { }
+      }
     });
     console.log("server is listening")
     app.listen();
